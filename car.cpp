@@ -13,41 +13,43 @@ car::car()
 	year = 0;
 }
 
-car::car(const char* _model)
+car::car(const char* _model):car()
 {
+	if (model != nullptr)
+	{
+		delete[] model;
+	}
 	model = new char[strlen(_model) + 1];
 	strcpy(model, _model);
-	price = 0;
-	year = 0;
 }
 
-car::car(const char* _model, float _price)
+car::car(const char* _model, float _price):car(_model)
 {
-	model = new char[strlen(_model) + 1];
-	strcpy(model, _model);
-	price = _price;
-	year = 0;
+	if (_price>0)
+	{
+		price = _price;
+	}
 }
 
-car::car(const char* _model, float _price, int _year)
+car::car(const char* _model, float _price, int _year):car(_model,_price)
 {
-	model = new char[strlen(_model) + 1];
-	strcpy(model, _model);
-	price = _price;
-	year = _year;
+	if (_year>0)
+	{
+		year = _year;
+	}
 }
 
-car::car(const char* _model, float _price, int _year, const char* _shop)
+car::car(const char* _model, float _price, int _year, const char* _shop):car(_model,_price,_year)
 {
-	model = new char[strlen(_model) + 1];
-	strcpy(model, _model);
-	price = _price;
-	year = _year;
+	if (shop != nullptr)
+	{
+		delete[] shop;
+	}
 	shop = new char[strlen(_shop) + 1];
 	strcpy(shop, _shop);
 }
 
-void car::show()
+void car::show()const
 {
 	cout << "\tДанные про машину:";
 	cout << "\nМодель: " << model;

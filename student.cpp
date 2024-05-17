@@ -17,74 +17,60 @@ student::student()
 	grade = 0;
 }
 
-student::student(const char* _FIO)
+student::student(const char* _FIO):student()
 {
+	if (FIO != nullptr)
+	{
+		delete[] FIO;
+	}
 	FIO = new char[strlen(_FIO) + 1];
 	strcpy(FIO, _FIO);
-	birthday = new char[4];
-	strcpy(birthday, "---");
-	telephone = new char[4];
-	strcpy(telephone, "---");
-	grade = 0;
 }
 
-student::student(const char* _FIO, const char* _birthday)
+student::student(const char* _FIO, const char* _birthday):student(_FIO)
 {
-	FIO = new char[strlen(_FIO) + 1];
-	strcpy(FIO, _FIO);
+	if (birthday != nullptr)
+	{
+		delete[] birthday;
+	}
 	birthday = new char[strlen(_birthday) + 1];
 	strcpy(birthday, _birthday);
-	telephone = new char[4];
-	strcpy(telephone, "---");
-	grade = 0;
 }
 
-student::student(const char* _FIO, const char* _birthday, const char* _telephone)
+student::student(const char* _FIO, const char* _birthday, const char* _telephone):student(_FIO,_birthday)
 {
-	FIO = new char[strlen(_FIO) + 1];
-	strcpy(FIO, _FIO);
-	birthday = new char[strlen(_birthday) + 1];
-	strcpy(birthday, _birthday);
+	if (telephone != nullptr)
+	{
+		delete[] telephone;
+	}
 	telephone = new char[strlen(_telephone) + 1];
 	strcpy(telephone, _telephone);
-	grade = 0;
 }
 
-student::student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade)
+student::student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade):student(_FIO,_birthday,_telephone)
 {
-	FIO = new char[strlen(_FIO) + 1];
-	strcpy(FIO, _FIO);
-	birthday = new char[strlen(_birthday) + 1];
-	strcpy(birthday, _birthday);
-	telephone = new char[strlen(_telephone) + 1];
-	strcpy(telephone, _telephone);
-	grade = _grade;
+	if (_grade>0)
+	{
+		grade = _grade;
+	}
 }
 
-student::student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade, const char* _group)
+student::student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade, const char* _group):student(_FIO, _birthday, _telephone,_grade)
 {
-	FIO = new char[strlen(_FIO) + 1];
-	strcpy(FIO, _FIO);
-	birthday = new char[strlen(_birthday) + 1];
-	strcpy(birthday, _birthday);
-	telephone = new char[strlen(_telephone) + 1];
-	strcpy(telephone, _telephone);
-	grade = _grade;
+	if (group != nullptr)
+	{
+		delete[] group;
+	}
 	group = new char[strlen(_group) + 1];
 	strcpy(group, _group);
 }
 
-student::student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade, const char* _group, const char* _university)
+student::student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade, const char* _group, const char* _university):student(_FIO, _birthday, _telephone, _grade, _group)
 {
-	FIO = new char[strlen(_FIO) + 1];
-	strcpy(FIO, _FIO);
-	birthday = new char[strlen(_birthday) + 1];
-	strcpy(birthday, _birthday);
-	telephone = new char[strlen(_telephone) + 1];
-	strcpy(telephone, _telephone);
-	grade = _grade;
-	group = new char[strlen(_group) + 1];
-	strcpy(group, _group);
+	if (university != nullptr)
+	{
+		delete[] university;
+	}
 	university = new char[strlen(_university) + 1];
 	strcpy(university, _university);
 }
@@ -158,7 +144,7 @@ void student::stat_input()
 	strcpy(university, buff);
 }
 
-void student::show()
+void student::show()const
 {
 	cout << "\tДанные про студента:";
 	cout << "\nФИО: " << FIO;

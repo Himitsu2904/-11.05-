@@ -11,21 +11,21 @@ public:
 	car(const char* _model, float _price);
 	car(const char* _model, float _price, int _year);
 	car(const char* _model, float _price, int _year, const char* shop);
-	void show();
+	void show()const;
 	static void stat_input();
-	char* Get_model()
+	char* Get_model()const
 	{
 		return model;
 	}
-	float Get_price()
+	float Get_price()const
 	{
 		return price;
 	}
-	int Get_year()
+	int Get_year()const
 	{
 		return year;
 	}
-	char* Get_shop()
+	static char* Get_shop()
 	{
 		return shop;
 	}

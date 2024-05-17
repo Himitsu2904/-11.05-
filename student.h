@@ -16,20 +16,20 @@ public:
 	student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade, const char* _group);
 	student(const char* _FIO, const char* _birthday, const char* _telephone, float _grade, const char* _group, const char* _university);
 	static void stat_input();
-	void show();
-	char* Get_FIO()
+	void show()const;
+	char* Get_FIO()const
 	{
 		return FIO;
 	}
-	char* Get_birthday()
+	char* Get_birthday()const
 	{
 		return birthday;
 	}
-	char* Get_telephone()
+	char* Get_telephone()const
 	{
 		return telephone;
 	}
-	float Get_grade()
+	float Get_grade()const
 	{
 		return grade;
 	}
